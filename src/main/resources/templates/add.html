@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="toEval"></input>
+	<Button type="button" id="doit">evaluate</Button>
+	<div id="result"></div>
+	<script>
+		$("#doit").click(()=>{
+			let res=eval($("#toEval").val());
+			$("#result").text(res);
+		});
+	</script>
+</body>
+</html>
