@@ -41,6 +41,7 @@ public class TestController {
 			int b=rand.nextInt(2);
 			System.out.println("b============="+b);
 			int a=10/b;
+			System.out.println(a);
 		} catch (Exception e) {
 			mav = new ModelAndView("error/500");
    			mav.addObject("message", e.getMessage());
