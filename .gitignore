@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/com/h2example/crudlogin/GmeetGenerator.java
