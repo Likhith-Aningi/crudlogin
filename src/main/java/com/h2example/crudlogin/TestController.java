@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/test")
 public class TestController {
+	@Value("${injectValue}")
+	public String inValue;
+
+	@Value("${url}")
+	public String url;
+
+	@Value("${server.port}")
+	public int port;
+	@Value("${sampleVal}")
+	public float flot;
+
 	@GetMapping("/rest")
 	public String getRestOP(HttpServletRequest request) {
 		System.out.println("rest op hit " + request.getHeader("User-Agent"));
@@ -53,5 +65,10 @@ public class TestController {
 		}
 		mav = new ModelAndView("add");
 		return mav;
+	}
+
+	@GetMapping("/injectValue")
+	public String retInjectedValue() {
+		return inValue + " db url: " + url + " serverPort: " + port + " sampleFloatVal : " + flot;
 	}
 }
