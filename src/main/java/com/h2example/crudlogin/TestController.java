@@ -67,8 +67,11 @@ public class TestController {
 		return mav;
 	}
 
+	@Value("${warfilename}")
+	String war;
+
 	@GetMapping("/injectValue")
 	public String retInjectedValue() {
-		return inValue + " db url: " + url + " serverPort: " + port + " sampleFloatVal : " + flot;
+		return war + " " + inValue + " db url: " + url + " serverPort: " + port + " sampleFloatVal : " + flot;
 	}
 }
