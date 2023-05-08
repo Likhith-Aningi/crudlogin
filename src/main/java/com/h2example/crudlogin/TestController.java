@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/test")
 public class TestController {
+	@Autowired
+	private TestWire testWre;
 	@Value("${injectValue}")
 	public String inValue;
 
@@ -27,6 +30,7 @@ public class TestController {
 	@GetMapping("/rest")
 	public String getRestOP(HttpServletRequest request) {
 		System.out.println("rest op hit " + request.getHeader("User-Agent"));
+		testWre.meth();
 		return "Hello java dev this is rest output";
 	}
 
@@ -67,8 +71,11 @@ public class TestController {
 		return mav;
 	}
 
+	@Value("${warfilename}")
+	String war;
+
 	@GetMapping("/injectValue")
 	public String retInjectedValue() {
-		return inValue + " db url: " + url + " serverPort: " + port + " sampleFloatVal : " + flot;
+		return war + " " + inValue + " db url: " + url + " serverPort: " + port + " sampleFloatVal : " + flot;
 	}
 }
