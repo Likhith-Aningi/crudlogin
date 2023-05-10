@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,8 +81,17 @@ public class TestController {
 		return war + " " + inValue + " db url: " + url + " serverPort: " + port + " sampleFloatVal : " + flot;
 	}
 
+	// path var should me mandatory for request or else it will throw bad request
+	// error
 	@GetMapping("/path/{val}")
 	public String pathVarImplemtnation(@PathVariable int val) {
 		return "you have passed " + val + " with url";
+	}
+
+	// requestparam is optional and flexible
+	@GetMapping("/request-param")
+	public String requestParamImplementation(
+			@RequestParam(name = "val", required = false, defaultValue = "\"this is default value\"") String val) {
+		return "you hava passed " + val;
 	}
 }
