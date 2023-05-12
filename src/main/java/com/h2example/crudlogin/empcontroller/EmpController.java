@@ -1,8 +1,11 @@
 package com.h2example.crudlogin.empcontroller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,7 +57,12 @@ public class EmpController {
 
     // get emp by id
     @GetMapping("/findbyid")
-    public EmpEntity getbyid(@RequestParam int eid) {
-        return empRepo.findById(eid).get();
+    public ResponseEntity<EmpEntity> getbyid(@RequestParam int eid) {
+        Optional<EmpEntity> emp = empRepo.findById(eid);
+        if (emp.isPresent())
+            return new ResponseEntity<>(emp.get(), HttpStatus.OK);
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
