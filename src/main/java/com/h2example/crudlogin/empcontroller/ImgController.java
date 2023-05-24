@@ -1,13 +1,11 @@
 package com.h2example.crudlogin.empcontroller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.h2example.crudlogin.emprepository.ImgRepo;
 import com.h2example.crudlogin.entity.MysqlImageEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/img")
@@ -16,8 +14,11 @@ public class ImgController {
     ImgRepo imgRepo;
 
     @GetMapping
-    public @ResponseBody Iterable<MysqlImageEntity> getImgLinks() {
+    public @ResponseBody List<MysqlImageEntity> getImgLinks() {
         return imgRepo.findAll();
     }
-    
+    @PostMapping
+    public String saveLInk(@RequestBody MysqlImageEntity img){
+       return imgRepo.save(img)!=null?"Image path saved successfully":"failed";
+    }
 }

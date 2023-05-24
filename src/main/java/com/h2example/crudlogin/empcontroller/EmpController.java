@@ -59,10 +59,19 @@ public class EmpController {
     @GetMapping("/findbyid")
     public ResponseEntity<EmpEntity> getbyid(@RequestParam int eid) {
         Optional<EmpEntity> emp = empRepo.findById(eid);
-        if (emp.isPresent())
-            return new ResponseEntity<>(emp.get(), HttpStatus.OK);
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return emp.map(empEntity -> new ResponseEntity<>(empEntity, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    //for jpa hibernare usage...
+    @GetMapping("/findbyname")
+    public EmpEntity getbyname(@RequestParam String ename) {
+        return empRepo.findByEname(ename);
+    }
+    @GetMapping("/findbysal")
+    public List<EmpEntity> getbysal(@RequestParam Float esal) {
+        return empRepo.findByEsal(esal);
+    }
+    @GetMapping("/nameLike")
+    public List<String> getNameLike() {
+        return empRepo.findNameLike();
     }
 }

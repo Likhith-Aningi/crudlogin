@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "Images")
 public class MysqlImageEntity {
     @Id
-    @GeneratedValue
     private int iid;
     @Column(name = "Ipath")
     private String ipath;

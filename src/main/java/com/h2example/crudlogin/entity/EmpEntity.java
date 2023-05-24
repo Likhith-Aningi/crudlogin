@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("ALL")
 @Entity
 @Table(name = "EMP")
 public class EmpEntity {
