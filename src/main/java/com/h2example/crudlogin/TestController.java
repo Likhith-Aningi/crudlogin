@@ -1,11 +1,16 @@
 package com.h2example.crudlogin;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.h2example.crudlogin.entity.EmpEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 @CrossOrigin(origins={"http://localhost:3000","http://likhith:3000"})
@@ -89,5 +94,14 @@ public class TestController {
 	public String requestParamImplementation(
 			@RequestParam(name = "val", required = false, defaultValue = "\"this is default value\"") String val) {
 		return "you hava passed " + val;
+	}
+
+	@Autowired
+	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	@GetMapping("/NamedJdbc")
+	public ResponseEntity<List<EmpEntity>> getNamedJdbcOP(){//Usage of dao should be in service layer but here using for demo
+		List<EmpEntity> res=namedParameterJdbcTemplate.query("Select ename,esal  from EMP",new BeanPropertyRowMapper<>(EmpEntity.class));
+		return ResponseEntity.ok().body(res);
 	}
 }
