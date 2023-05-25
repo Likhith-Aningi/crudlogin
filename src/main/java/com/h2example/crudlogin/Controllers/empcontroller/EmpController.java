@@ -1,4 +1,4 @@
-package com.h2example.crudlogin.empcontroller;
+package com.h2example.crudlogin.Controllers.empcontroller;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.h2example.crudlogin.emprepository.EmpRepo;
-import com.h2example.crudlogin.entity.EmpEntity;
+import com.h2example.crudlogin.Repositories.emprepository.EmpRepo;
+import com.h2example.crudlogin.Entities.entity.EmpEntity;
 
 @RestController
 @RequestMapping("/emp")

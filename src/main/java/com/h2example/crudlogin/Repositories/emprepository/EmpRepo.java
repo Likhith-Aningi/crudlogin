@@ -1,6 +1,6 @@
-package com.h2example.crudlogin.emprepository;
+package com.h2example.crudlogin.Repositories.emprepository;
 
-import com.h2example.crudlogin.entity.EmpEntity;
+import com.h2example.crudlogin.Entities.entity.EmpEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

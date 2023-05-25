@@ -1,4 +1,4 @@
-package com.h2example.crudlogin.entity;
+package com.h2example.crudlogin.Entities.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

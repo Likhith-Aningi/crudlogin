@@ -1,7 +1,7 @@
-package com.h2example.crudlogin.empcontroller;
+package com.h2example.crudlogin.Controllers.empcontroller;
 
-import com.h2example.crudlogin.emprepository.ImgRepo;
-import com.h2example.crudlogin.entity.MysqlImageEntity;
+import com.h2example.crudlogin.Repositories.emprepository.ImgRepo;
+import com.h2example.crudlogin.Entities.entity.MysqlImageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
