@@ -1,9 +1,5 @@
 package com.h2example.crudlogin;
 
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.h2example.crudlogin.Entities.entity.EmpEntity;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,6 +11,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://likhith:3000"})
 @RestController
