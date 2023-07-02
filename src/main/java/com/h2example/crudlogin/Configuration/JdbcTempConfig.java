@@ -15,14 +15,14 @@ public class JdbcTempConfig {
     String clasName;
     @Value("${spring.datasource.url}")
     String url;
-
+    @Value ("${spring.datasource.password}") String pwd;
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(clasName);
         dataSource.setUrl(url);
         dataSource.setUsername("root");
-        dataSource.setPassword("mysql@Way2");
+        dataSource.setPassword(pwd);
         return dataSource;
     }
 
