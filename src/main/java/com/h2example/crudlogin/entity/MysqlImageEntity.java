@@ -1,15 +1,12 @@
 package com.h2example.crudlogin.Entities.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Images")
 public class MysqlImageEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int iid;
     @Column(name = "Ipath")
     private String ipath;

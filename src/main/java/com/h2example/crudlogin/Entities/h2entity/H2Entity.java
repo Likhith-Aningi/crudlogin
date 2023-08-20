@@ -1,14 +1,14 @@
-package com.h2example.crudlogin.Entities.entity;
+package com.h2example.crudlogin.Entities.h2entity;
 
 import javax.persistence.*;
 
 @SuppressWarnings("ALL")
 @Entity
-@Table(name = "emp")
-public class EmpEntity {
+@Table(name = "EMP")
+public class H2Entity {
     @Id
-//    @GeneratedValue
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//for indepedent id generation instead of sequence
+    @GeneratedValue
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int eid;
     private float esal;
     private String ename;
