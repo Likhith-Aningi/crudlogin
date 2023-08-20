@@ -1,4 +1,4 @@
-package com.h2example.crudlogin.empcontroller;
+package com.h2example.crudlogin.Controllers.empcontroller;
 
 import com.h2example.crudlogin.Entities.entity.EmpEntity;
 import com.h2example.crudlogin.Repositories.emprepository.EmpRepo;
