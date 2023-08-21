@@ -105,7 +105,7 @@ public class TestController {
 
     @GetMapping("/NamedJdbc")
     public ResponseEntity<List<EmpEntity>> getNamedJdbcOP() {//Usage of dao should be in service layer but here using for demo
-        List<EmpEntity> res = namedParameterJdbcTemplate.query("Select ename,esal  from EMP", new BeanPropertyRowMapper<>(EmpEntity.class));
+        List<EmpEntity> res = namedParameterJdbcTemplate.query("Select ename,esal  from emp", new BeanPropertyRowMapper<>(EmpEntity.class));
         return ResponseEntity.ok().body(res);
     }
 
@@ -113,7 +113,7 @@ public class TestController {
     JdbcTemplate jdbcTemplate;
     @GetMapping("/LimNamedJdbc")
     public JSONArray getNamedRepOP() {
-        List<Map<String, Object>> res = namedParameterJdbcTemplate.getJdbcTemplate().queryForList("Select ename,esal  from EMP;");
+        List<Map<String, Object>> res = namedParameterJdbcTemplate.getJdbcTemplate().queryForList("Select ename,esal  from emp;");
         JSONArray jsonArray = new JSONArray();
         for (Map<String, Object> re : res) {
             JSONObject jsonObject = new JSONObject();
