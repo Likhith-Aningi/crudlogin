@@ -1,0 +1,1 @@
+this is publicly available at contextPath(localhost:port/likit)/social/japan.txt
