@@ -1,5 +1,7 @@
 package com.h2example.crudlogin;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.h2example.crudlogin.Entities.entity.EmpEntity;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://likhith:3000"})
+@CrossOrigin(origins = {"http://localhost:5173", "http://likhith:3000","http://localhost:3000"})
 @RestController
 @RequestMapping("/test")
 public class TestController {
@@ -122,5 +124,15 @@ public class TestController {
             jsonArray.add(jsonObject);
         }
         return jsonArray;
+    }
+    @GetMapping("/getJSON")
+    public JsonNode getJsonNode(){
+        return JsonNodeFactory.instance.objectNode().put("method","get")
+                .put("data","hello");
+    }
+    @PostMapping("/getJSON")
+    public JsonNode getPostJsonNode(){
+        return JsonNodeFactory.instance.objectNode().put("method","post ")
+                .put("data","hello from post");
     }
 }
