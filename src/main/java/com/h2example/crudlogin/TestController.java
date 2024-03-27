@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins = {"http://localhost:5173", "http://likhith:3000","http://localhost:3000"})
 @RestController
@@ -135,4 +138,11 @@ public class TestController {
         return JsonNodeFactory.instance.objectNode().put("method","post ")
                 .put("data","hello from post");
     }
+    @Value("${profileVal}")
+    String profile;
+    @GetMapping("/profile")
+    public String getProfile() {
+        return "Current profile is "+profile;
+    }
+    
 }
