@@ -1,26 +1,36 @@
 package com.h2example.crudlogin;
 
-import com.h2example.crudlogin.Entities.entity.EmpEntity;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import com.h2example.crudlogin.Entities.entity.EmpEntity;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://likhith:3000"})
+@CrossOrigin(origins = { "http://localhost:3000", "http://likhith:3000" })
 @RestController
 @RequestMapping("/test")
 public class TestController {
+    private static final Logger logger = LoggerFactory.getLogger(TestController.class);
     @Autowired
     private TestWire testWre;
     @Value("${injectValue}")
@@ -54,6 +64,7 @@ public class TestController {
         try {
             throw new Exception("my exception");
         } catch (Exception e) {
+            logger.error("my errorr ", e);
             ModelAndView mav = new ModelAndView("error/500");
             mav.addObject("message", e.getMessage());
             return mav;
@@ -104,21 +115,25 @@ public class TestController {
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @GetMapping("/NamedJdbc")
-    public ResponseEntity<List<EmpEntity>> getNamedJdbcOP() {//Usage of dao should be in service layer but here using for demo
-        List<EmpEntity> res = namedParameterJdbcTemplate.query("Select ename,esal  from EMP", new BeanPropertyRowMapper<>(EmpEntity.class));
+    public ResponseEntity<List<EmpEntity>> getNamedJdbcOP() {// Usage of dao should be in service layer but here using
+                                                             // for demo
+        List<EmpEntity> res = namedParameterJdbcTemplate.query("Select ename,esal  from EMP",
+                new BeanPropertyRowMapper<>(EmpEntity.class));
         return ResponseEntity.ok().body(res);
     }
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
     @GetMapping("/LimNamedJdbc")
     public JSONArray getNamedRepOP() {
-        List<Map<String, Object>> res = namedParameterJdbcTemplate.getJdbcTemplate().queryForList("Select ename,esal  from EMP;");
+        List<Map<String, Object>> res = namedParameterJdbcTemplate.getJdbcTemplate()
+                .queryForList("Select ename,esal  from EMP;");
         JSONArray jsonArray = new JSONArray();
         for (Map<String, Object> re : res) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("ename",re.get("ename"));
-            jsonObject.put("esal",re.get("esal"));
+            jsonObject.put("ename", re.get("ename"));
+            jsonObject.put("esal", re.get("esal"));
             jsonArray.add(jsonObject);
         }
         return jsonArray;
